@@ -1,7 +1,7 @@
 import axios, { AxiosInstance } from 'axios';
 
 import { constants } from '../constants';
-import { AutocompleteResponse, ForecastApiResponse, Location, WeatherApiResponse } from './types';
+import { ForecastApiResponse, Location, WeatherApiResponse } from './types';
 
 class WeatherApi {
   private static instance: WeatherApi;
@@ -23,11 +23,11 @@ class WeatherApi {
     return WeatherApi.instance;
   }
 
-  public async fetchWeatherByCity(city: string): Promise<WeatherApiResponse> {
+  public async fetchWeatherByCity(query: string): Promise<WeatherApiResponse> {
     try {
       const response = await this.axiosInstance.get<WeatherApiResponse>('/current.json', {
         params: {
-          q: city,
+          q: query,
         },
       });
 
@@ -39,19 +39,21 @@ class WeatherApi {
   }
 
   public async fetchForecastByCity({
-    city,
+    query,
     hour,
   }: {
-    city: string;
+    query: string;
     hour: number;
   }): Promise<ForecastApiResponse> {
     try {
       const response = await this.axiosInstance.get<ForecastApiResponse>('/forecast.json', {
         params: {
-          q: city,
+          q: query,
           hour,
         },
       });
+
+      console.log(response.data);
 
       return response.data as ForecastApiResponse;
     } catch (error) {
@@ -62,12 +64,14 @@ class WeatherApi {
 
   public async autocompleteCity(query: string): Promise<Location[]> {
     try {
-      const response = await this.axiosInstance.get<AutocompleteResponse>('/search.json', {
+      const response = await this.axiosInstance.get<Location[]>('/search.json', {
         params: {
           q: query,
         },
       });
-      return response.data.locations;
+      console.log(response.data);
+
+      return response.data;
     } catch (error) {
       console.error('Error fetching autocomplete data:', error);
       return [];

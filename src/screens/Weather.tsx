@@ -10,29 +10,41 @@ const dayBG = require('../assets/dayBG.jpeg');
 const nightBG = require('../assets/nightBG.jpg');
 
 export const Weather = () => {
-  const { forecast, city, setCity, autocompleteLocations, forecastHours, setForecastHours } =
-    useWeatherData();
+  const {
+    forecast,
+    city,
+    setCity,
+    autocompleteLocations,
+    forecastHours,
+    setForecastHours,
+    setLocation,
+  } = useWeatherData();
 
   const isDayAtForecastLocation = forecast?.current.is_day;
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container} style={styles.scroll}>
       <ImageBackground
         source={isDayAtForecastLocation ? dayBG : nightBG}
         style={styles.imgBackground}
       >
-        <Search city={city} setCity={setCity} autocompleteLocations={autocompleteLocations} />
+        <Search
+          city={city}
+          setCity={setCity}
+          autocompleteLocations={autocompleteLocations}
+          setLocation={setLocation}
+        />
         <Current forecast={forecast} />
         {forecast && (
           <ForecastHours forecastHours={forecastHours} setForecastHours={setForecastHours} />
         )}
-        <ScrollView contentContainerStyle={styles.scrollContainer} style={styles.scroll}>
+        <View style={styles.scrollContainer}>
           {forecast?.forecast.forecastday[0].hour.map((hour: HourData) => {
             return <Forecast key={hour.time} hour={hour} />;
           })}
-        </ScrollView>
+        </View>
       </ImageBackground>
-    </View>
+    </ScrollView>
   );
 };
 

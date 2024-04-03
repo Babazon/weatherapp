@@ -10,30 +10,30 @@ export interface CurrentProps {
 
 export const Current: React.FC<CurrentProps> = ({ forecast }) => {
   const current = forecast?.current;
+  const location = forecast?.location;
   const forecastDay = forecast?.forecast.forecastday;
   const today = forecastDay?.length ? forecastDay[0] : undefined;
 
-  if (!forecast?.current) {
+  if (!current) {
     return null;
   }
 
   return (
     <View style={styles.container}>
+      <Text style={styles.location}>
+        {location?.name}, {location?.country}
+      </Text>
       <View style={styles.weatherContainer}>
         <View style={styles.weatherDetails}>
-          {current && (
-            <FastImage
-              source={{ uri: `https:${current?.condition.icon}` }}
-              style={styles.weatherIcon}
-              resizeMode={'contain'}
-            />
-          )}
-          {current && (
-            <Text style={styles.currentTemp}>
-              {Math.round(current.temp_c)}
-              °C
-            </Text>
-          )}
+          <FastImage
+            source={{ uri: `https:${current?.condition.icon}` }}
+            style={styles.weatherIcon}
+            resizeMode={'contain'}
+          />
+          <Text style={styles.currentTemp}>
+            {Math.round(current.temp_c)}
+            °C
+          </Text>
         </View>
         <Text style={styles.weatherDescription}>{current?.condition.text}</Text>
       </View>
@@ -87,6 +87,13 @@ export const Current: React.FC<CurrentProps> = ({ forecast }) => {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
+  },
+  location: {
+    fontSize: 20,
+    color: 'white',
+    margin: 8,
+    backgroundColor: 'rgba(0,0,0,0.3)',
+    padding: 4,
   },
   weatherContainer: {
     alignItems: 'center',

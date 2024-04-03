@@ -140,21 +140,11 @@ export interface HourData {
 }
 
 export interface Location {
-  ip: string;
-  type: string;
-  continent_code: string;
-  continent_name: string;
-  country_code: string;
-  country_name: string;
-  is_eu: boolean;
-  geoname_id: string;
-  city: string;
+  id: number;
+  name: string;
   region: string;
+  country: string;
   lat: number;
   lon: number;
-  tz_id: string;
-}
-
-export interface AutocompleteResponse {
-  locations: Location[];
+  url: string;
 }

@@ -7,7 +7,24 @@ export const useWeatherData = () => {
   const [forecastHours, setForecastHours] = useState<number>(5);
   const [city, setCity] = useState('');
   const [autocompleteLocations, setAutocompleteLocations] = useState<Location[]>();
+  const [location, setLocation] = useState<Location>();
   const [forecast, setForecast] = useState<ForecastApiResponse>();
+
+  useEffect(() => {
+    const fetchLocationForecast = async ({ query, hour }: { query: string; hour: number }) => {
+      try {
+        const forecast = await api.fetchForecastByCity({ query, hour });
+        setForecast(forecast);
+        setAutocompleteLocations([]);
+      } catch (error) {
+        console.error('Error fetching autocomplete data:', error);
+      }
+    };
+
+    if (location) {
+      fetchLocationForecast({ hour: forecastHours, query: location.url ?? city });
+    }
+  }, [location, city, forecastHours]);
 
   useEffect(() => {
     const autocompleteCity = async (city: string) => {
@@ -25,9 +42,9 @@ export const useWeatherData = () => {
   }, [city]);
 
   useEffect(() => {
-    const fetchForecastData = async ({ city, hour }: { city: string; hour: number }) => {
+    const fetchForecastData = async ({ query, hour }: { query: string; hour: number }) => {
       try {
-        const response = await api.fetchForecastByCity({ city, hour });
+        const response = await api.fetchForecastByCity({ query, hour });
         setForecast(response);
       } catch (error) {
         console.error('Error fetching weather data:', error);
@@ -35,9 +52,17 @@ export const useWeatherData = () => {
     };
 
     if (city) {
-      fetchForecastData({ city, hour: forecastHours });
+      fetchForecastData({ query: location?.url ?? city, hour: forecastHours });
     }
-  }, [city, forecastHours]);
+  }, [city, forecastHours, location]);
 
-  return { autocompleteLocations, city, setCity, forecast, forecastHours, setForecastHours };
+  return {
+    autocompleteLocations,
+    city,
+    setCity,
+    forecast,
+    forecastHours,
+    setForecastHours,
+    setLocation,
+  };
 };
