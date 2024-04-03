@@ -1,9 +1,5 @@
-import React from 'react';
-import { View } from 'react-native';
+import { Weather } from './screens/Weather';
 
-
-function App(): React.JSX.Element {
-  return <View />;
-}
-
-export default App;
+export const App = () => {
+  return <Weather />;
+};

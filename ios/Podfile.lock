@@ -958,10 +958,6 @@ PODS:
     - React-debug
   - react-native-safe-area-context (4.9.0):
     - React-Core
-  - react-native-webview (13.8.2):
-    - glog
-    - RCT-Folly (= 2022.05.16.00)
-    - React-Core
   - React-nativeconfig (0.73.6)
   - React-NativeModulesApple (0.73.6):
     - glog
@@ -1133,11 +1129,11 @@ PODS:
     - React-Core
     - SDWebImage (~> 5.11.1)
     - SDWebImageWebPCoder (~> 0.8.4)
-  - RNGestureHandler (2.15.0):
+  - RNGestureHandler (2.16.0):
     - glog
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
-  - RNScreens (3.29.0):
+  - RNScreens (3.30.1):
     - glog
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
@@ -1204,7 +1200,6 @@ DEPENDENCIES:
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - React-Mapbuffer (from `../node_modules/react-native/ReactCommon`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
-  - react-native-webview (from `../node_modules/react-native-webview`)
   - React-nativeconfig (from `../node_modules/react-native/ReactCommon`)
   - React-NativeModulesApple (from `../node_modules/react-native/ReactCommon/react/nativemodule/core/platform/ios`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
@@ -1307,8 +1302,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
-  react-native-webview:
-    :path: "../node_modules/react-native-webview"
   React-nativeconfig:
     :path: "../node_modules/react-native/ReactCommon"
   React-NativeModulesApple:
@@ -1400,7 +1393,6 @@ SPEC CHECKSUMS:
   React-logger: 3eb80a977f0d9669468ef641a5e1fabbc50a09ec
   React-Mapbuffer: 84ea43c6c6232049135b1550b8c60b2faac19fab
   react-native-safe-area-context: b97eb6f9e3b7f437806c2ce5983f479f8eb5de4b
-  react-native-webview: ec68fd94daa0e47c58c087e6bbebccd4497b5c4e
   React-nativeconfig: b4d4e9901d4cabb57be63053fd2aa6086eb3c85f
   React-NativeModulesApple: cd26e56d56350e123da0c1e3e4c76cb58a05e1ee
   React-perflogger: 5f49905de275bac07ac7ea7f575a70611fa988f2
@@ -1422,8 +1414,8 @@ SPEC CHECKSUMS:
   React-utils: d16c1d2251c088ad817996621947d0ac8167b46c
   ReactCommon: 2aa35648354bd4c4665b9a5084a7d37097b89c10
   RNFastImage: 5c9c9fed9c076e521b3f509fe79e790418a544e8
-  RNGestureHandler: 67fb54b3e6ca338a8044e85cd6f340265aa41091
-  RNScreens: 17e2f657f1b09a71ec3c821368a04acbb7ebcb46
+  RNGestureHandler: bc2cdb2dc42facdf34992ae364b8a728e19a3686
+  RNScreens: b6b64d956af3715adbfe84808694ae82d3fec74f
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   SDWebImageWebPCoder: 908b83b6adda48effe7667cd2b7f78c897e5111d
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17

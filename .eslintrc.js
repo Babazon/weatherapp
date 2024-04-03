@@ -13,14 +13,11 @@ module.exports = {
     },
   ],
   plugins: ['prettier', 'react-hooks', 'simple-import-sort', '@typescript-eslint', 'react-native'],
-  extends: [
-    'prettier',
-    'plugin:prettier/recommended', // Make sure this is always the last element in the array.
-  ],
+  extends: ['prettier', 'plugin:prettier/recommended'],
   rules: {
     'prettier/prettier': 'warn',
     '@typescript-eslint/no-unused-vars': 'off',
-    'react-hooks/exhaustive-deps': 'warn', // temporary warning, will be error soon
+    'react-hooks/exhaustive-deps': 'warn',
     'simple-import-sort/imports': 'warn',
     'simple-import-sort/exports': 'warn',
     'react-native/no-inline-styles': 'warn',

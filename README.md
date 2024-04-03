@@ -1,6 +1,6 @@
 # Weather App
-Weather Appis a user-friendly mobile application designed to keep users updated on weather forecast. Leveraging the Weatherapi public API, the app provides real-time information about weather.
 
+Weather Appis a user-friendly mobile application designed to keep users updated on weather forecast. Leveraging the Weatherapi public API, the app provides real-time information about weather.
 
 1. [Weather App](#weather-app)
 2. [Key Features](#key-features)
@@ -14,8 +14,8 @@ Weather Appis a user-friendly mobile application designed to keep users updated 
 7. [Installing and running the app](#getting-started)
    - [Step 1: Start the Metro Server](#step-1-start-the-metro-server)
    - [Step 2: Start your Application](#step-2-start-your-application)
-      - [For Android](#for-android)
-      - [For iOS](#for-ios)
+     - [For Android](#for-android)
+     - [For iOS](#for-ios)
    - [Step 3: Modifying your App](#step-3-modifying-your-app)
 8. [Congratulations!](#congratulations)
    - [Now what?](#now-what)
@@ -27,7 +27,8 @@ Weather Appis a user-friendly mobile application designed to keep users updated 
 ### City Search
 
 ## Project Structure
-The project follows a structured layout for easy navigation and maintenance. Folders such as state, translations, context, (or containers, molecules..) can be added when the project gets larger. 
+
+The project follows a structured layout for easy navigation and maintenance. Folders such as state, translations, context, (or containers, molecules..) can be added when the project gets larger.
 
 ```
 /src
@@ -45,6 +46,7 @@ __mocks__
 ```
 
 ## Quality of Life Improvements
+
 The package.json file includes scripts for linting, formatting, type-checking, and running unit tests, promoting code quality and maintainability.  
 `$ npm run check-types`
 `$ npm run lint-fix`
@@ -58,7 +60,6 @@ The package.json file includes scripts for linting, formatting, type-checking, a
 ### Android
 
 ### IOS
-
 
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
