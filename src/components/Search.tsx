@@ -28,7 +28,7 @@ export const Search: FC<SearchProps> = ({
         value={city}
         placeholder={'Search By City'}
         onSubmitEditing={onSearch}
-      ></TextInput>
+      />
       <TouchableOpacity onPress={onSearch} style={styles.searchButton}>
         <Icon name="search" size={32} color="gray" />
       </TouchableOpacity>
