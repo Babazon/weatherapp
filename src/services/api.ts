@@ -1,7 +1,7 @@
 import axios, { AxiosInstance } from 'axios';
 
 import { constants } from '../constants';
-import { ForecastApiResponse, Location, WeatherApiResponse } from './types';
+import { ForecastApiResponse, Location } from './types';
 
 class WeatherApi {
   private static instance: WeatherApi;
@@ -23,21 +23,6 @@ class WeatherApi {
     return WeatherApi.instance;
   }
 
-  public async fetchWeatherByCity(query: string): Promise<WeatherApiResponse> {
-    try {
-      const response = await this.axiosInstance.get<WeatherApiResponse>('/current.json', {
-        params: {
-          q: query,
-        },
-      });
-
-      return response.data;
-    } catch (error) {
-      console.log('Failed to fetch weather data by city', error);
-      throw new Error('Failed to fetch weather data by city');
-    }
-  }
-
   public async fetchForecastByCity({
     query,
     hour,
@@ -52,9 +37,6 @@ class WeatherApi {
           hour,
         },
       });
-
-      console.log(response.data);
-
       return response.data as ForecastApiResponse;
     } catch (error) {
       console.log('Failed to fetch forecast data by hour', error);
@@ -69,8 +51,6 @@ class WeatherApi {
           q: query,
         },
       });
-      console.log(response.data);
-
       return response.data;
     } catch (error) {
       console.error('Error fetching autocomplete data:', error);

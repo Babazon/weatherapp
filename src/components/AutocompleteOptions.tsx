@@ -4,12 +4,12 @@ import { Location, Maybe } from '../services/types';
 
 interface AutocompleteOptionsProps {
   autocompleteLocations: Maybe<Location[]>;
-  setLocation: React.Dispatch<React.SetStateAction<Location | undefined>>;
+  onAutocomplete: (location: Location) => void;
 }
 
 export const AutocompleteOptions: React.FC<AutocompleteOptionsProps> = ({
   autocompleteLocations,
-  setLocation,
+  onAutocomplete,
 }) => {
   if (!autocompleteLocations?.length || autocompleteLocations?.length === 1) {
     return null;
@@ -18,7 +18,11 @@ export const AutocompleteOptions: React.FC<AutocompleteOptionsProps> = ({
     <View style={styles.container}>
       <Text style={styles.text}>Did you mean: </Text>
       {autocompleteLocations.map((location: Location, index: number) => (
-        <TouchableOpacity onPress={() => setLocation(location)} style={styles.button}>
+        <TouchableOpacity
+          onPress={() => onAutocomplete(location)}
+          style={styles.button}
+          key={location.id}
+        >
           <Text style={styles.text}>
             {location.name} ({location.country})
             {index < autocompleteLocations.length - 1 ? ',' : ''}
@@ -40,14 +44,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 2,
     flexWrap: 'wrap',
     backgroundColor: 'rgba(0,0,0,0.4)',
-  },
-  citiesContainer: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    backgroundColor: 'red',
-    marginHorizontal: 2,
-    flexWrap: 'wrap',
   },
   text: {
     fontSize: 14,

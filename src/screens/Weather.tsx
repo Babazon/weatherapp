@@ -1,4 +1,5 @@
-import { ImageBackground, ScrollView, StyleSheet, View } from 'react-native';
+import { ImageBackground, ScrollView, StyleSheet, Text, View } from 'react-native';
+import Icon from 'react-native-vector-icons/Feather';
 
 import { Current } from '../components/Current';
 import { Forecast } from '../components/Forecast';
@@ -17,7 +18,8 @@ export const Weather = () => {
     autocompleteLocations,
     forecastHours,
     setForecastHours,
-    setLocation,
+    onAutocomplete,
+    onSearch,
   } = useWeatherData();
 
   const isDayAtForecastLocation = forecast?.current.is_day;
@@ -32,8 +34,17 @@ export const Weather = () => {
           city={city}
           setCity={setCity}
           autocompleteLocations={autocompleteLocations}
-          setLocation={setLocation}
+          onAutocomplete={onAutocomplete}
+          onSearch={onSearch}
         />
+        {!forecast && (
+          <View style={styles.placeholderContainer}>
+            <Icon name="cloud-drizzle" size={60} color="white" />
+            <Text style={styles.placeholder}>
+              If you don't search for a city, my heart is always crying in the rain
+            </Text>
+          </View>
+        )}
         <Current forecast={forecast} />
         {forecast && (
           <ForecastHours forecastHours={forecastHours} setForecastHours={setForecastHours} />
@@ -56,11 +67,14 @@ const styles = StyleSheet.create({
   placeholder: {
     color: 'white',
     textAlign: 'center',
+    fontSize: 24,
   },
-  forecastContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
+  placeholderContainer: {
+    margin: 24,
     flexDirection: 'column',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    height: 200,
   },
   imgBackground: {
     width: '100%',

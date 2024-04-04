@@ -21,5 +21,6 @@ module.exports = {
     'simple-import-sort/imports': 'warn',
     'simple-import-sort/exports': 'warn',
     'react-native/no-inline-styles': 'warn',
+    'react-native/no-unused-styles': 'error',
   },
 };

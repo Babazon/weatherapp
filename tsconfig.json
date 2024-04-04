@@ -8,7 +8,7 @@
     "esModuleInterop": true,
     "allowJs": true,
     "noEmit": true,
-    "types": ["node"],
+    "types": ["node", "jest"],
     "strict": true,
     "moduleResolution": "node16",
     "baseUrl": "./",

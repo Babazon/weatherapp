@@ -1,15 +1,18 @@
 import moment from 'moment';
-import React, { FC } from 'react';
+import React, { FC, useMemo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import FastImage from 'react-native-fast-image';
 
 import { HourData } from '../services/types';
+import { getTemperatureColor } from '../utils/getTemperatureColor';
 
 interface Props {
   hour: HourData;
 }
 
 export const Forecast: FC<Props> = ({ hour }) => {
+  const temperatureColor = useMemo(() => getTemperatureColor(hour.temp_c), [hour.temp_c]);
+
   return (
     <View style={styles.hourContainer}>
       <View style={styles.dateContainer}>
@@ -26,8 +29,9 @@ export const Forecast: FC<Props> = ({ hour }) => {
         <Text style={styles.weekhour}>{hour.condition.text}</Text>
       </View>
       <View style={styles.degreeView}>
-        <Text style={styles.degree}>{Math.round(hour.temp_c)} °C</Text>
-        <Text style={styles.feelsLike}>Feels{Math.round(hour.feelslike_c)} °C</Text>
+        <Text style={[styles.degree, { color: temperatureColor }]}>
+          {Math.round(hour.temp_c)} °C
+        </Text>
       </View>
     </View>
   );
@@ -35,10 +39,10 @@ export const Forecast: FC<Props> = ({ hour }) => {
 
 const styles = StyleSheet.create({
   hourContainer: {
-    padding: 8,
+    padding: 4,
     backgroundColor: 'rgba(0, 0, 0, 0.4)',
     borderRadius: 16,
-    margin: 10,
+    margin: 8,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-evenly',
@@ -70,15 +74,11 @@ const styles = StyleSheet.create({
   degreeView: {
     flex: 1,
     flexDirection: 'column',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
   },
   degree: {
-    fontSize: 24,
-    color: 'white',
-  },
-  feelsLike: {
-    fontSize: 14,
+    fontSize: 32,
     color: 'white',
   },
 });

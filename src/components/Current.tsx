@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import FastImage from 'react-native-fast-image';
 
 import { ForecastApiResponse, Maybe } from '../services/types';
+import { getTemperatureColor } from '../utils/getTemperatureColor';
 
 export interface CurrentProps {
   forecast: Maybe<ForecastApiResponse>;
@@ -18,11 +19,27 @@ export const Current: React.FC<CurrentProps> = ({ forecast }) => {
     return null;
   }
 
+  const temperatureColor = useMemo(() => getTemperatureColor(current.temp_c), [current.temp_c]);
+  const lowTemperatureColor = useMemo(
+    () => getTemperatureColor(today?.day.mintemp_c),
+    [today?.day.mintemp_c],
+  );
+  const highTemperatureColor = useMemo(
+    () => getTemperatureColor(today?.day.maxtemp_c),
+    [today?.day.maxtemp_c],
+  );
+  const feelsTemperatureColor = useMemo(
+    () => getTemperatureColor(current.feelslike_c),
+    [current.feelslike_c],
+  );
+
   return (
     <View style={styles.container}>
-      <Text style={styles.location}>
-        {location?.name}, {location?.country}
-      </Text>
+      <View style={styles.locationContainer}>
+        <Text style={styles.location}>
+          {location?.name}, {location?.country}
+        </Text>
+      </View>
       <View style={styles.weatherContainer}>
         <View style={styles.weatherDetails}>
           <FastImage
@@ -30,7 +47,7 @@ export const Current: React.FC<CurrentProps> = ({ forecast }) => {
             style={styles.weatherIcon}
             resizeMode={'contain'}
           />
-          <Text style={styles.currentTemp}>
+          <Text style={[styles.currentTemp, { color: temperatureColor }]}>
             {Math.round(current.temp_c)}
             °C
           </Text>
@@ -41,21 +58,21 @@ export const Current: React.FC<CurrentProps> = ({ forecast }) => {
         <View style={styles.additionalInfoRow}>
           <View style={styles.infoBox}>
             <Text style={styles.label}>Feels</Text>
-            <Text style={styles.details}>
+            <Text style={[styles.details, { color: feelsTemperatureColor }]}>
               {current && Math.round(current.feelslike_c)}
               °C
             </Text>
           </View>
           <View style={styles.infoBox}>
             <Text style={styles.label}>Low</Text>
-            <Text style={styles.details}>
+            <Text style={[styles.details, { color: lowTemperatureColor }]}>
               {today && Math.round(today?.day.mintemp_c)}
               °C
             </Text>
           </View>
           <View style={styles.infoBox}>
             <Text style={styles.label}>High</Text>
-            <Text style={styles.details}>
+            <Text style={[styles.details, { color: highTemperatureColor }]}>
               {today && Math.round(today.day.maxtemp_c)}
               °C
             </Text>
@@ -91,9 +108,12 @@ const styles = StyleSheet.create({
   location: {
     fontSize: 20,
     color: 'white',
+  },
+  locationContainer: {
     margin: 8,
     backgroundColor: 'rgba(0,0,0,0.3)',
     padding: 4,
+    borderRadius: 8,
   },
   weatherContainer: {
     alignItems: 'center',
@@ -125,25 +145,25 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     alignItems: 'center',
     justifyContent: 'center',
-    margin: 20,
+    margin: 8,
     width: '95%',
     maxWidth: 478,
   },
   additionalInfoRow: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    padding: 10,
+    padding: 4,
     width: '100%',
   },
   infoBox: {
     alignItems: 'center',
   },
   label: {
-    fontSize: 18,
+    fontSize: 14,
     color: 'white',
   },
   details: {
-    fontSize: 15,
+    fontSize: 12,
     color: 'white',
   },
 });

@@ -12,11 +12,10 @@ export const ForecastHours: React.FC<ForecastHoursProps> = ({
   setForecastHours,
 }) => {
   const getConditionalButtonStyle = (hour: number, forecastHours: number): ViewStyle => ({
-    backgroundColor: hour === forecastHours ? 'rgba(0,0,0,0.4)' : 'rgba(255,255,255,0.5)',
+    backgroundColor: hour === forecastHours ? 'rgba(255,255,255,0.5)' : 'rgba(0,0,0,0.4)',
   });
   const getConditionalTextStyle = (hour: number, forecastHours: number): TextStyle => ({
     fontWeight: hour === forecastHours ? 'bold' : 'normal',
-    color: forecastHours ? 'white' : 'black',
   });
 
   return (
@@ -29,7 +28,7 @@ export const ForecastHours: React.FC<ForecastHoursProps> = ({
             key={hour}
           >
             <Text style={[styles.hourText, getConditionalTextStyle(hour, forecastHours)]}>
-              {hour}
+              {hour}h
             </Text>
           </TouchableOpacity>
         );
@@ -43,7 +42,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    margin: 16,
+    margin: 8,
   },
   hourButton: {
     height: 40,
@@ -53,6 +52,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   hourText: {
-    fontSize: 24,
+    fontSize: 20,
+    color: 'white',
   },
 });

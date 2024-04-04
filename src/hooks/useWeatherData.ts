@@ -1,3 +1,4 @@
+import { debounce } from 'lodash';
 import { useEffect, useState } from 'react';
 
 import { api } from '../services/api';
@@ -7,54 +8,42 @@ export const useWeatherData = () => {
   const [forecastHours, setForecastHours] = useState<number>(5);
   const [city, setCity] = useState('');
   const [autocompleteLocations, setAutocompleteLocations] = useState<Location[]>();
-  const [location, setLocation] = useState<Location>();
   const [forecast, setForecast] = useState<ForecastApiResponse>();
 
-  useEffect(() => {
-    const fetchLocationForecast = async ({ query, hour }: { query: string; hour: number }) => {
-      try {
-        const forecast = await api.fetchForecastByCity({ query, hour });
-        setForecast(forecast);
-        setAutocompleteLocations([]);
-      } catch (error) {
-        console.error('Error fetching autocomplete data:', error);
-      }
-    };
+  const onAutocomplete = (loc: Location) => {
+    onSearch(loc);
+  };
 
-    if (location) {
-      fetchLocationForecast({ hour: forecastHours, query: location.url ?? city });
+  const onSearch = async (loc?: Location) => {
+    try {
+      const response = await api.fetchForecastByCity({
+        query: loc?.url ?? city,
+        hour: forecastHours,
+      });
+      setForecast(response);
+      setAutocompleteLocations([]);
+      setCity('');
+    } catch (error) {
+      console.error('Error fetching location forecast:', error);
     }
-  }, [location, city, forecastHours]);
+  };
 
   useEffect(() => {
-    const autocompleteCity = async (city: string) => {
+    const autocompleteCity = debounce(async (query: string) => {
       try {
-        const locations = await api.autocompleteCity(city);
-        setAutocompleteLocations(locations);
+        const locations = await api.autocompleteCity(query);
+        if (locations.length) {
+          setAutocompleteLocations(locations);
+        }
       } catch (error) {
         console.error('Error fetching autocomplete data:', error);
       }
-    };
+    }, 500);
 
     if (city) {
       autocompleteCity(city);
     }
   }, [city]);
-
-  useEffect(() => {
-    const fetchForecastData = async ({ query, hour }: { query: string; hour: number }) => {
-      try {
-        const response = await api.fetchForecastByCity({ query, hour });
-        setForecast(response);
-      } catch (error) {
-        console.error('Error fetching weather data:', error);
-      }
-    };
-
-    if (city) {
-      fetchForecastData({ query: location?.url ?? city, hour: forecastHours });
-    }
-  }, [city, forecastHours, location]);
 
   return {
     autocompleteLocations,
@@ -63,6 +52,7 @@ export const useWeatherData = () => {
     forecast,
     forecastHours,
     setForecastHours,
-    setLocation,
+    onAutocomplete,
+    onSearch,
   };
 };
