@@ -1,10 +1,15 @@
 # Weather App
 
-Weather Appis a user-friendly mobile application designed to keep users updated on weather forecast. Leveraging the Weatherapi public API, the app provides real-time information about weather.
+Weather App is a user-friendly mobile application designed to keep users updated on weather forecasts. Leveraging the Weatherapi public API, the app provides real-time information about weather.
 
 1. [Weather App](#weather-app)
 2. [Key Features](#key-features)
-   - [City Search](#city-search)
+   - [Autocomplete API](#1-autocomplete-api)
+   - [Forecast Options](#2-forecast-options)
+   - [Color code for temperatures](#3-color-code-for-temperatures)
+   - [Pull to refresh](#4-pull-to-refresh)
+   - [Error handling](#5-error-handling)
+   - [Day/Night mode](#6-daynight-mode)
 3. [Project Structure](#project-structure)
 4. [Quality of Life Improvements](#quality-of-life-improvements)
 5. [Future Improvements](#future-improvements)
@@ -24,7 +29,29 @@ Weather Appis a user-friendly mobile application designed to keep users updated 
 
 ## Key Features
 
-### City Search
+### 1. Autocomplete API
+
+The search bar continuously tries to assist the user by offering autocompleted city queries. This only works if there are 3 or more characters typed in the search bar.
+
+### 2. Forecast Options
+
+The Forecast area offers 2, 5, 10, 20 hour forecast for the day with average temperature.
+
+### 3. Color code for temperatures
+
+The temperature strings are color coded to help read the information better
+
+### 4. Pull to refresh
+
+The app displays the time the weather data was last updated, and intiutive pull to refresh functionality can help fetch new data
+
+### 5. Error handling
+
+An error text is displayed when the query doesn't return a result
+
+### 6. Day/Night mode
+
+The app, geniusly, displays a day or night background based on target location.
 
 ## Project Structure
 
@@ -55,11 +82,21 @@ The package.json file includes scripts for linting, formatting, type-checking, a
 
 ## Future Improvements
 
+The app could have an automatic update tha runs on background, and fetches new weather forecast. Weekly forecast can be displayed. Geolocation option can get user's location, and query based on lat/long. Searched locations can be saved to AsyncStorage and be accessed and queried easily.
+
 ## Screenshots
 
 ### Android
 
+![Screenshot_20240404_212638](https://github.com/Babazon/weatherapp/assets/9430138/ca660f25-6b44-4fb2-9430-20f775b7cd2d)
+![Screenshot_20240404_212615](https://github.com/Babazon/weatherapp/assets/9430138/0fc1fde3-5fb2-40db-9494-902a2a96b826)
+![Screenshot_20240404_212549](https://github.com/Babazon/weatherapp/assets/9430138/27696394-1061-4d55-b165-7d011e285c60)
+
 ### IOS
+
+![Simulator Screen Shot - iPhone SE (3rd generation) - 2024-04-04 at 20 40 20](https://github.com/Babazon/weatherapp/assets/9430138/ecb6a057-1389-448c-b532-92b8fdfa8622)
+![Simulator Screen Shot - iPhone SE (3rd generation) - 2024-04-04 at 20 39 59](https://github.com/Babazon/weatherapp/assets/9430138/8acea489-d13e-4d13-b28c-52a9b4852951)
+![Simulator Screen Shot - iPhone SE (3rd generation) - 2024-04-04 at 20 39 42](https://github.com/Babazon/weatherapp/assets/9430138/a705ba5c-1276-4f82-8c47-5ca7d262aa02)
 
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
