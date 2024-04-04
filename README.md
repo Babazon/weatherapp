@@ -88,7 +88,15 @@ The app could have an automatic update tha runs on background, and fetches new w
 
 ### Android
 
+![Screenshot_20240404_212638](https://github.com/Babazon/weatherapp/assets/9430138/ca660f25-6b44-4fb2-9430-20f775b7cd2d)
+![Screenshot_20240404_212615](https://github.com/Babazon/weatherapp/assets/9430138/0fc1fde3-5fb2-40db-9494-902a2a96b826)
+![Screenshot_20240404_212549](https://github.com/Babazon/weatherapp/assets/9430138/27696394-1061-4d55-b165-7d011e285c60)
+
 ### IOS
+
+![Simulator Screen Shot - iPhone SE (3rd generation) - 2024-04-04 at 20 40 20](https://github.com/Babazon/weatherapp/assets/9430138/ecb6a057-1389-448c-b532-92b8fdfa8622)
+![Simulator Screen Shot - iPhone SE (3rd generation) - 2024-04-04 at 20 39 59](https://github.com/Babazon/weatherapp/assets/9430138/8acea489-d13e-4d13-b28c-52a9b4852951)
+![Simulator Screen Shot - iPhone SE (3rd generation) - 2024-04-04 at 20 39 42](https://github.com/Babazon/weatherapp/assets/9430138/a705ba5c-1276-4f82-8c47-5ca7d262aa02)
 
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
