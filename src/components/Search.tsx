@@ -10,7 +10,7 @@ interface SearchProps {
   setCity: (value: string) => void;
   autocompleteLocations: Maybe<Location[]>;
   onAutocompleteLocationPress: (location: Location) => void;
-  onSearch: () => void;
+  fetchForecast: () => void;
 }
 
 export const Search: FC<SearchProps> = ({
@@ -18,7 +18,7 @@ export const Search: FC<SearchProps> = ({
   setCity,
   autocompleteLocations,
   onAutocompleteLocationPress,
-  onSearch,
+  fetchForecast,
 }) => {
   return (
     <View style={styles.container}>
@@ -27,9 +27,9 @@ export const Search: FC<SearchProps> = ({
         onChangeText={setCity}
         value={city}
         placeholder={'Search By City'}
-        onSubmitEditing={onSearch}
+        onSubmitEditing={fetchForecast}
       />
-      <TouchableOpacity onPress={onSearch} style={styles.searchButton}>
+      <TouchableOpacity onPress={fetchForecast} style={styles.searchButton}>
         <Icon name="search" size={32} color="gray" />
       </TouchableOpacity>
       <AutocompleteOptions

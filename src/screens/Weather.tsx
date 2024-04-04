@@ -22,7 +22,7 @@ export const Weather = () => {
     forecastHours,
     onForecastHoursPress,
     onAutocompleteLocationPress,
-    onSearch,
+    fetchForecast,
     isSearchError,
   } = useWeatherData();
 
@@ -34,7 +34,7 @@ export const Weather = () => {
       style={styles.scroll}
       refreshControl={
         // Prevent pull down on each fetch
-        <RefreshControl refreshing={false} onRefresh={() => onSearch(forecast?.location)} />
+        <RefreshControl refreshing={false} onRefresh={() => fetchForecast(forecast?.location)} />
       }
     >
       <ImageBackground
@@ -46,7 +46,7 @@ export const Weather = () => {
           setCity={setCity}
           autocompleteLocations={autocompleteLocations}
           onAutocompleteLocationPress={onAutocompleteLocationPress}
-          onSearch={onSearch}
+          fetchForecast={fetchForecast}
         />
         <SearchError isSearchError={isSearchError} />
         <Placeholder showPlaceholder={!forecast} />
