@@ -13,7 +13,8 @@ export const constants = {
     large: 24,
   },
   api: {
-    API_KEY: '0292f6d328d24e90bad165906240204',
+    // Place your API_KEY here
+    API_KEY: '',
     BASE_URL: 'https://api.weatherapi.com/v1',
     forecastHoursOptions: [2, 5, 10, 20],
   },
