@@ -1,27 +1,20 @@
 export type Maybe<T> = T | null | undefined;
-
-export interface WeatherApiResponse {
-  location: LocationData;
-  current: CurrentWeatherData;
-}
-
 export interface ForecastApiResponse {
-  location: LocationData;
+  location: Location;
   current: CurrentWeatherData;
   forecast: {
     forecastday: ForecastDay[];
   };
 }
 
-export interface LocationData {
+export interface Location {
+  id: number;
   name: string;
   region: string;
   country: string;
   lat: number;
   lon: number;
-  tz_id: string;
-  localtime_epoch: number;
-  localtime: string;
+  url: string;
 }
 
 export interface CurrentWeatherData {
@@ -137,14 +130,4 @@ export interface HourData {
   gust_mph: number;
   gust_kph: number;
   uv: number;
-}
-
-export interface Location {
-  id: number;
-  name: string;
-  region: string;
-  country: string;
-  lat: number;
-  lon: number;
-  url: string;
 }
