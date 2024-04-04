@@ -39,7 +39,6 @@ class WeatherApi {
       });
       return response.data as ForecastApiResponse;
     } catch (error) {
-      console.log('Failed to fetch forecast data by hour', error);
       throw new Error('Failed to fetch forecast data by hour');
     }
   }
@@ -53,7 +52,7 @@ class WeatherApi {
       });
       return response.data;
     } catch (error) {
-      console.error('Error fetching autocomplete data:', error);
+      console.log('Error fetching autocomplete data:', error);
       return [];
     }
   }

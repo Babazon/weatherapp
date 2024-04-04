@@ -4,13 +4,19 @@ import { constants } from '../constants';
 
 interface ForecastHoursProps {
   forecastHours: number;
-  setForecastHours: React.Dispatch<React.SetStateAction<number>>;
+  onForecastHoursPress: (hours: number) => void;
+  showForecastHours: boolean;
 }
 
 export const ForecastHours: React.FC<ForecastHoursProps> = ({
   forecastHours,
-  setForecastHours,
+  onForecastHoursPress,
+  showForecastHours,
 }) => {
+  if (!showForecastHours) {
+    return null;
+  }
+
   const getConditionalButtonStyle = (hour: number, forecastHours: number): ViewStyle => ({
     backgroundColor: hour === forecastHours ? 'rgba(255,255,255,0.5)' : 'rgba(0,0,0,0.4)',
   });
@@ -23,7 +29,7 @@ export const ForecastHours: React.FC<ForecastHoursProps> = ({
       {constants.api.forecastHoursOptions.map((hour: number) => {
         return (
           <TouchableOpacity
-            onPress={() => setForecastHours(hour)}
+            onPress={() => onForecastHoursPress(hour)}
             style={[styles.hourButton, getConditionalButtonStyle(hour, forecastHours)]}
             key={hour}
           >

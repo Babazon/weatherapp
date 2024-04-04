@@ -4,12 +4,12 @@ import { Location, Maybe } from '../services/types';
 
 interface AutocompleteOptionsProps {
   autocompleteLocations: Maybe<Location[]>;
-  onAutocomplete: (location: Location) => void;
+  onAutocompleteLocationPress: (location: Location) => void;
 }
 
 export const AutocompleteOptions: React.FC<AutocompleteOptionsProps> = ({
   autocompleteLocations,
-  onAutocomplete,
+  onAutocompleteLocationPress,
 }) => {
   if (!autocompleteLocations?.length || autocompleteLocations?.length === 1) {
     return null;
@@ -19,7 +19,7 @@ export const AutocompleteOptions: React.FC<AutocompleteOptionsProps> = ({
       <Text style={styles.text}>Did you mean: </Text>
       {autocompleteLocations.map((location: Location, index: number) => (
         <TouchableOpacity
-          onPress={() => onAutocomplete(location)}
+          onPress={() => onAutocompleteLocationPress(location)}
           style={styles.button}
           key={location.id}
         >

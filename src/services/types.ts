@@ -8,13 +8,13 @@ export interface ForecastApiResponse {
 }
 
 export interface Location {
-  id: number;
+  id?: number;
   name: string;
   region: string;
   country: string;
   lat: number;
   lon: number;
-  url: string;
+  url?: string;
 }
 
 export interface CurrentWeatherData {

@@ -9,7 +9,7 @@ interface SearchProps {
   city: string;
   setCity: (value: string) => void;
   autocompleteLocations: Maybe<Location[]>;
-  onAutocomplete: (location: Location) => void;
+  onAutocompleteLocationPress: (location: Location) => void;
   onSearch: () => void;
 }
 
@@ -17,7 +17,7 @@ export const Search: FC<SearchProps> = ({
   city,
   setCity,
   autocompleteLocations,
-  onAutocomplete,
+  onAutocompleteLocationPress,
   onSearch,
 }) => {
   return (
@@ -34,7 +34,7 @@ export const Search: FC<SearchProps> = ({
       </TouchableOpacity>
       <AutocompleteOptions
         autocompleteLocations={autocompleteLocations}
-        onAutocomplete={onAutocomplete}
+        onAutocompleteLocationPress={onAutocompleteLocationPress}
       />
     </View>
   );
